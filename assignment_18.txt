@@ -1,0 +1,108 @@
+1.
+
+def track_robot(l):
+    l1 = []
+    count_l =0
+    count_r =0
+    count_u =0
+    count_d =0
+    
+    for i in l:
+        if "left" in i:
+            count_l += int(i.split(' ')[1])
+        if "right" in i:
+            count_r += int(i.split(' ')[1])
+        if "up" in i:
+            count_u += int(i.split(' ')[1])
+        if "down" in i:
+            count_d += int(i.split(' ')[1])
+              
+    l1.append(count_r - count_l)
+    l1.append(count_u - count_d)
+    
+    return l1
+
+print(track_robot(["right 10", "up 50", "left 30", "down 10"]))
+print(track_robot([]))
+print(track_robot(["right 100", "right 100", "up 500", "up 10000"]) )
+
+2.
+
+
+def find_longest(s):
+    longest = 0
+    for word in s.split():
+        if len(word) > longest:
+            longest = len(word)
+            longest_word = word   
+    return longest_word.strip('.')
+
+print(find_longest("A thing of beauty is a joy forever."))
+print(find_longest("Forgetfulness is by all means powerless!")   )
+print(find_longest('"Strengths" is the longest and most commonly used word that contains only a single vowel.') )
+
+3.
+
+
+def interview(l,total_time):
+    if total_time <= 120 and len(l) == 8:
+        for i in l[0:2]:
+            if i > 5:
+                return "disqualified"
+        for i in l[2:4]:
+            if i > 10:
+                return "disqualified"
+        for i in l[4:6]:
+            if i > 15:
+                return "disqualified"
+        for i in l[6:8]:
+            if i > 20:
+                return "disqualified"
+    else:
+        return "disqualified"
+    
+    return 'qualified'
+
+print(interview([5, 5, 10, 10, 15, 15, 20, 20], 120) )
+print(interview([2, 3, 8, 6, 5, 12, 10, 18], 64) )
+print(interview([5, 5, 10, 10, 25, 15, 20, 20], 120) )
+print(interview([5, 5, 10, 10, 15, 15, 20], 120))
+print(interview([5, 5, 10, 10, 15, 15, 20, 20], 130) )
+
+4.
+
+
+def chunkify(lst, size):
+  return [lst[i:i + size] for i in range(0,len(lst),size)]
+
+print(chunkify([2, 3, 4, 5], 2))
+print(chunkify([2, 3, 4, 5, 6], 2))
+print(chunkify([2, 3, 4, 5, 6, 7], 3))
+print(chunkify([2, 3, 4, 5, 6, 7], 1))
+print(chunkify([2, 3, 4, 5, 6, 7], 7))
+
+
+
+5.
+
+
+def get_prices(l):
+    l1 = []
+    for i in l:
+        l1.append(i.split(' ')[-1].replace('($', '').replace(')',''))
+    return list(map(float,l1))
+
+print(get_prices(l = [
+  "artichokes ($1.99)",
+  "rotiserrie chicken ($5.99)",
+  "gum ($0.75)"
+]))
+
+print(get_prices([
+  "ice cream ($5.99)",
+  "banana ($0.20)",
+  "sandwich ($8.50)",
+  "soup ($1.99)"
+])
+)
+print(get_prices(["salad ($4.99)"]))
